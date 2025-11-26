@@ -8,20 +8,17 @@ function App() {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const API = import.meta.env.VITE_BACKEND_URL || "";
-
   const fetchWeather = async (city) => {
     try {
       setLoading(true);
-
-      const url = `${API}/api/weather?city=${city}`; // ✅ Correct
-
-      const res = await axios.get(url);
-      setWeather(res.data.data);
-    } catch (err) {
-      console.error(err);
+      const response = await axios.get(
+        `/api/weather?city=${city}`
+      );
+      setWeather(response.data.data);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
       alert("City not found or server error");
-    } finally {
       setLoading(false);
     }
   };
