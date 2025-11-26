@@ -14,14 +14,10 @@ function App() {
     try {
       setLoading(true);
 
-      const url =
-        API === ""
-          ? `/api/weather?city=${city}`               // dev proxy
-          : `${API}/api/weather?city=${city}`;        // production
+      const url = `${API}/api/weather?city=${city}`; // ✅ Correct
 
       const res = await axios.get(url);
       setWeather(res.data.data);
-
     } catch (err) {
       console.error(err);
       alert("City not found or server error");
