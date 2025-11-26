@@ -12,7 +12,7 @@ function App() {
     try {
       setLoading(true);
       const response = await axios.get(
-        `/api/weather?city=${city}`
+        `${import.meta.env.VITE_BACKEND_URL}/api/weather?city=${city}`
       );
       setWeather(response.data.data);
       setLoading(false);
